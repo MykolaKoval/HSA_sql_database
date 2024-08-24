@@ -70,7 +70,7 @@ Run app and script
 docker-compose up -d
 ./insert-users.sh
 ```
-Set value for ``innodb_flush_log_at_trx_commit``. Restart app to use new value in new session. 
+Set dynamic value for ``innodb_flush_log_at_trx_commit``. Restart app to use new value in new session. 
 ```
 SET GLOBAL innodb_flush_log_at_trx_commit=0;
 SHOW VARIABLES LIKE 'innodb_flush_log_at_trx_commit';
