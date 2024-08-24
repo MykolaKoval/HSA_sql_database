@@ -1,0 +1,39 @@
+version: '3.6'
+services:
+
+  db:
+    image: mysql:8.4
+    env_file: configuration.env
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - mysqldb_data:/var/lib/mysql
+      - ./scripts/ddl.sql:/docker-entrypoint-initdb.d/1.sql # Create data model
+      - ./scripts/data.sql:/docker-entrypoint-initdb.d/2.sql # Fill with 40M users
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    networks:
+      - backend
+
+  hsa-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: configuration.env
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - backend
+
+volumes:
+  mysqldb_data:
+
+networks:
+  backend:
+    driver: bridge
