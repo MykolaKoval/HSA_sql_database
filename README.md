@@ -84,4 +84,4 @@ Records created for different concurrency level = 0, 100, 200
 | 100              | 6127<br/>10060<br/>11561<br/>12412<br/>10555<br/>Avg: 10143 | 6331<br/>11554<br/>12258<br/>13498<br/>13845<br/>Avg: 11497 | 5835<br/>10512<br/>11775<br/>12598<br/>13157<br/>Avg: 10775 |
 | 200              | 5883<br/>9543<br/>11231<br/>12632<br/>13450<br/>Avg: 10548 | 16120<br/>8554<br/>10725<br/>11107<br/>12051<br/>Avg: 10711 | 5963<br/>9784<br/>11700<br/>12518<br/>13220<br/>Avg: 10637 |
 
-Сonclusions: applied load doesn't allow to reveal performance boost when changing value from 1 -> 2. It seems that current conditions are not enough to generate load on db to measure the effect.   
+Сonclusions: applied load doesn't allow to reveal performance boost when changing value from 1 -> 2. It seems that current conditions are not enough to generate load on db to measure the effect (limitation on app side, a lot of requests are waiting to be processed which reduces load on db in the moment).   
