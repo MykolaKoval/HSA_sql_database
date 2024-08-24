@@ -51,7 +51,7 @@ https://dev.mysql.com/doc/refman/8.4/en/create-index.html
 <img src="./images/btree_index.png" width="900">
 <img src="./images/hash_index.png" width="900">
 
-<h3>2. Insert records with different values for db setting ``innodb_flush_log_at_trx_commit`` </h3>
+<h3>2. Insert records with different values for db setting innodb_flush_log_at_trx_commit </h3>
 
 ``innodb_flush_log_at_trx_commit`` values meaning
 
@@ -78,10 +78,10 @@ SHOW VARIABLES LIKE 'innodb_flush_log_at_trx_commit';
 
 Records created for different concurrency level = 0, 100, 200
 
-| concurrent users | ``innodb_flush_log_at_trx_commit``= 0                       | ``innodb_flush_log_at_trx_commit``= 1                       | ``innodb_flush_log_at_trx_commit``= 2                       |
-|------------------|-------------------------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------|
-| 0                | 2610<br/>3949<br/>4348<br/>4439<br/>4427<br/>Avg: 3955      | 2974<br/>3861<br/>4015<br/>4108<br/>4141<br/>Avg: 3820      | 3083<br/>4017<br/>4343<br/>4415<br/>4510<br/>Avg: 4074      |
+| concurrent users | ``innodb_flush_log_at_trx_commit``=0                       | ``innodb_flush_log_at_trx_commit``=1                       | ``innodb_flush_log_at_trx_commit``=2                       |
+|------------------|------------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|
+| 0                | 2610<br/>3949<br/>4348<br/>4439<br/>4427<br/>Avg: 3955     | 2974<br/>3861<br/>4015<br/>4108<br/>4141<br/>Avg: 3820     | 3083<br/>4017<br/>4343<br/>4415<br/>4510<br/>Avg: 4074     |
 | 100              | 6127<br/>10060<br/>11561<br/>12412<br/>10555<br/>Avg: 10143 | 6331<br/>11554<br/>12258<br/>13498<br/>13845<br/>Avg: 11497 | 5835<br/>10512<br/>11775<br/>12598<br/>13157<br/>Avg: 10775 |
-| 200              | 5883<br/>9543<br/>11231<br/>12632<br/>13450<br/>Avg: 10548  | 16120<br/>8554<br/>10725<br/>11107<br/>12051<br/>Avg: 10711 | 5963<br/>9784<br/>11700<br/>12518<br/>13220<br/>Avg: 10637  |
+| 200              | 5883<br/>9543<br/>11231<br/>12632<br/>13450<br/>Avg: 10548 | 16120<br/>8554<br/>10725<br/>11107<br/>12051<br/>Avg: 10711 | 5963<br/>9784<br/>11700<br/>12518<br/>13220<br/>Avg: 10637 |
 
 Сonclusions: applied load doesn't allow to reveal performance boost when changing value from 1 -> 2. It seems that current conditions are not enough to generate load on db to measure the effect.   
